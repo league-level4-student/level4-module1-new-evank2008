@@ -50,3 +50,29 @@ public abstract class AbstractClassDemo {
  * 1. Create a class that extends the AbstractClassDemo class and implement its
  * methods.
  */
+class Classroom extends AbstractClassDemo implements DemoInterface, InterfaceDemo {
+
+	
+	public void abstractDemo() {
+		System.out.println("okay class");
+		
+	}
+
+	
+	public int abstractNumDemo() {
+		// TODO Auto-generated method stub
+		return 23;
+	}
+
+	public double interDemo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	public String faceDemo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

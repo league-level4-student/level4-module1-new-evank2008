@@ -1,5 +1,7 @@
 package _00_Intro_to_Exceptions;
 
+import javax.swing.JOptionPane;
+
 public class ExceptionsDemo {
 
     /*
@@ -39,7 +41,11 @@ public class ExceptionsDemo {
     public static void main(String[] args) {
 
         // 1. Create a try/catch block (Hint: type "try" and ctrl + space).
-
+try {
+	//testFiveOrGreater(3);
+} catch (Exception e) {
+	e.printStackTrace();
+}
         /*
          * 2. Call the testFiveOrGreater method with a value less than 5 inside
          * the try block.
@@ -52,7 +58,14 @@ public class ExceptionsDemo {
          */
 
         // 4. Run the program. Did the stack trace print out?
-
+try {
+	testPositive(2);
+} catch (NegativeException e) {
+	e.printStackTrace();
+	e.scaryPopup();
+} finally {
+	System.out.println("we goo");
+}
     }
 
     /*
@@ -63,7 +76,11 @@ public class ExceptionsDemo {
      * JOptionPane Message Dialog telling the user they have triggered a
      * critical error in their computer.
      */
-
+    static void testPositive(int i) throws NegativeException {
+		if(i<0) {
+			throw new NegativeException();
+		}
+	}
     /*
      * 7. Create a static method in this class called testPositive. It should
      * take a single number as a parameter and throw a NegativeNumberException
@@ -98,5 +115,13 @@ public class ExceptionsDemo {
      * 
      * 13. Try running the program with values that both throw and don't throw
      * exceptions.
+     * 
+     * 
      */
+}
+class NegativeException extends Exception{
+	void scaryPopup() {
+		JOptionPane.showMessageDialog(null, "error");
+	}
+	
 }

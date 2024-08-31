@@ -5,11 +5,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
+//STEP 12 RAHHHHHHHHH
 /*
  * 1. Create new member variables for the width and height of Polymorph then 
  * initialize them in its constructor.
@@ -60,22 +61,20 @@ public class PolymorphWindow extends JPanel implements ActionListener {
     private JFrame window;
     private Timer timer;
 
-    Polymorph bluePoly;
-
+ArrayList<Polymorph> morphs = new ArrayList<Polymorph>();
+    
     public static void main(String[] args) {
         new PolymorphWindow().buildWindow();
     }
 
     public void buildWindow() {
-        window = new JFrame("IT'S MORPHIN' TIME!");
+        window = new JFrame("IT'S MORPHINE TIME!");
         window.add(this);
         window.getContentPane().setPreferredSize(new Dimension(500, 500));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
-
-        bluePoly = new BluePolymorph(50, 50);
-
+        
         timer = new Timer(1000 / 30, this);
         timer.start();
     }
@@ -85,14 +84,13 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, 500, 500);
 
-        // draw polymorph
-        bluePoly.draw(g);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
-        bluePoly.update();
+
 
     }
 }
