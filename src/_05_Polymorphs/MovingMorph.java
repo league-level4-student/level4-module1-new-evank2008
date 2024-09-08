@@ -1,5 +1,6 @@
 package _05_Polymorphs;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -20,8 +21,10 @@ public class MovingMorph extends Polymorph{
 
 	@Override
 	public void draw(Graphics g) {
+		if(ran.nextInt(10)!=2) {return;}
 		// TODO Auto-generated method stub
-		
+		g.setColor(Color.green);
+		g.fillRect(x, y, width, height);
 	}
 
 }

@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -53,22 +55,28 @@ import javax.swing.Timer;
  *  clicked. Hint: MouseListener interface.
  */
 
-public class PolymorphWindow extends JPanel implements ActionListener {
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener {
 
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
 
     private JFrame window;
     private Timer timer;
+    
+    int mouseX=0;
+    int mouseY=0;
 
 ArrayList<Polymorph> morphs = new ArrayList<Polymorph>();
+Polymorph customCursor;
     
     public static void main(String[] args) {
         new PolymorphWindow().buildWindow();
     }
 
     public void buildWindow() {
+    	customCursor = new RedPolymorph(-100,-100,100,100);
         window = new JFrame("IT'S MORPHINE TIME!");
+        window.addMouseMotionListener(this);
         window.add(this);
         window.getContentPane().setPreferredSize(new Dimension(500, 500));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,6 +85,13 @@ ArrayList<Polymorph> morphs = new ArrayList<Polymorph>();
         
         timer = new Timer(1000 / 30, this);
         timer.start();
+        
+        morphs.add(new BluePolymorph(0, 0, 50, 400));
+        morphs.add (new RedPolymorph(50, 200, 200, 8));
+        morphs.add (new BluePolymorph(2, 400, 400, 400));
+        morphs.add(new MovingMorph(0,0,100,100));
+        morphs.add(customCursor);
+        
     }
 
     public void paintComponent(Graphics g) {
@@ -84,7 +99,10 @@ ArrayList<Polymorph> morphs = new ArrayList<Polymorph>();
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, 500, 500);
 
-
+        for (Polymorph p:morphs) {
+        	p.draw(g);
+        	p.update();
+        }
     }
 
     @Override
@@ -93,4 +111,23 @@ ArrayList<Polymorph> morphs = new ArrayList<Polymorph>();
 
 
     }
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("mouse dragged");
+		customCursor.x=arg0.getX();
+		customCursor.y=arg0.getY()-30;
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		
+		System.out.println("mouse moved");
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+	}
 }
